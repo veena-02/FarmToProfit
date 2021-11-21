@@ -1,0 +1,61 @@
+*{
+    margin:0; padding:0; box-sizing: border-box;
+}
+.home_background_text{
+    width:65vw;
+    background-color: rgba(255,255,255,0.4);
+    backdrop-filter: blur(2px);
+    border-radius: 18px!important;
+    padding: 10px;
+    font-family: 'Changa', 'sans-serif';
+    font-size: 26px;
+    align-items: center;
+}
+.home_background{
+    background-image: 
+        url(./../../Assets/images/allToolsPic.jpg);
+    width: 100vw !important;
+    height: 700px;
+    background-size: 100% 100%;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+@media (min-width:768px) {
+    .home_background{
+        height: 420px;
+    }    
+}
+@media (min-width:992px) {
+    .home_background{
+        height: 500px;
+    }    
+}
+@media (min-width:1200px) {
+    .home_background{
+        height: 560px;
+    }    
+}
+@media (min-width:1500px) {
+    .home_background{
+        height: 600px;
+    }    
+}
+.register_here{
+    border: 1px solid black;
+    background-color:rgba(0,0,0,0.69);
+    color: white;
+    border-radius:5px;
+    text-align: center;
+}
+.nav-link:focus, .nav-link:hover {
+    color:rgba(255,255,255,0.7);
+}
+
+a:hover {
+    color:rgba(255,255,255,0.7);
+}
+.register_here:hover{
+    background-color:rgba(0,0,0,1);
+    backdrop-filter: blur(1px);
+}

@@ -1,0 +1,44 @@
+.equipment_type_heading{
+    text-align: center;
+    margin: 13px;
+}
+.equipment_list_parent{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.equipment_card{
+    width: 350px;
+    border: 1px solid gray !important;
+    border-radius: 3px !important;
+    background-color:white !important;
+    box-shadow: 3px 0 3px  !important;
+    margin: 7px;
+    padding: 5px !important;
+}
+.equipment_card_img{
+    width:300px;
+    height:200px !important;
+    margin: 20px;
+    border: 1px solid gray !important;
+}
+.brand_model{
+    background-color:white !important;
+    box-shadow: 1px 0 2px !important;
+    margin: 20px;   
+    padding: 2px;
+    font-family: 'Volkhov', serif;
+    border-radius: 5px; 
+    color: rgb(1, 45, 66) !important;
+}
+button{
+    border: none !important;
+    background-color:white !important;
+    color: teal;
+    font-family: 'Volkhov', serif;
+}
+button:hover{
+    color: rgb(1, 45, 66) !important;
+    font-weight: bold !important;
+}
