@@ -3,6 +3,7 @@ import { Navbar, NavbarBrand, NavbarToggler,
          Collapse, Nav, NavItem, NavLink, 
          UncontrolledDropdown,DropdownToggle, 
          DropdownMenu, DropdownItem, NavbarText } from 'reactstrap';         
+import './LessorNavbar.css';
          
 const LessorNavbar = () =>{
     return (
@@ -25,7 +26,7 @@ const LessorNavbar = () =>{
                         navbar
                     >                        
                         <NavItem>
-                            <NavLink href="/equipmentList#tractors">
+                            <NavLink href="/lessorDashboard#tractors">
                                 MARKETPLACE
                             </NavLink>
                         </NavItem>
@@ -35,7 +36,7 @@ const LessorNavbar = () =>{
                             </NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="#">
+                            <NavLink href="/addvehicle">
                             ADD EQUIPMENT
                             </NavLink>
                         </NavItem>
@@ -47,13 +48,16 @@ const LessorNavbar = () =>{
                             <DropdownToggle
                                 caret
                                 nav
+                                className="shiftRight"
+                                
                             >
                                 USER PROFILE
                             </DropdownToggle>
-                            <DropdownMenu right>
+                            <DropdownMenu right
+                                className="shiftRight2" >
                                 <DropdownItem>
                                     <NavLink className="text-dark"
-                                    href="/editProfile">EDIT PROFILE</NavLink>
+                                    href="/editProfileL">EDIT PROFILE</NavLink>
                                 </DropdownItem>
                                 <DropdownItem divider />
                                 <DropdownItem>
@@ -65,9 +69,9 @@ const LessorNavbar = () =>{
                                     <NavLink className="text-dark"
                                     href="">ORDERS</NavLink>
                                 </DropdownItem>
-                                <DropdownItem>
-                                    <NavLink className="text-dark"
-                                    href="">LOGOUT</NavLink>
+                                <DropdownItem divider />
+                                <DropdownItem className="text-dark">
+                                    <button style={{marginLeft:"7px"}}>LOGOUT</button>
                                 </DropdownItem>
                             </DropdownMenu>
                         </UncontrolledDropdown>                        

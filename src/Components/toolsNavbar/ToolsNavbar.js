@@ -3,6 +3,7 @@ import { Navbar, NavbarBrand, NavbarToggler,
          Collapse, Nav, NavItem, NavLink, 
          UncontrolledDropdown,DropdownToggle, 
          DropdownMenu, DropdownItem, NavbarText } from 'reactstrap';         
+import './../LessorNavbar/LessorNavbar.css';      
          
 const ToolsNavbar = () =>{
     return (
@@ -52,18 +53,14 @@ const ToolsNavbar = () =>{
                             <DropdownToggle
                                 caret
                                 nav
+                                className="shiftRight"
                             >
                                 USER PROFILE
                             </DropdownToggle>
-                            <DropdownMenu right>
+                            <DropdownMenu right className="shiftRight2">
                                 <DropdownItem>
                                     <NavLink className="text-dark"
-                                    href="/editProfile">EDIT PROFILE</NavLink>
-                                </DropdownItem>
-                                <DropdownItem divider />
-                                <DropdownItem>
-                                    <NavLink className="text-dark"
-                                    href="">FAVOURITES</NavLink>
+                                    href="/editProfileF">EDIT PROFILE</NavLink>
                                 </DropdownItem>
                                 <DropdownItem divider />
                                 <DropdownItem>
@@ -75,9 +72,8 @@ const ToolsNavbar = () =>{
                                     <NavLink className="text-dark">ORDERS</NavLink>
                                 </DropdownItem>
                                 <DropdownItem divider />
-                                <DropdownItem>
-                                    <NavLink className="text-dark"
-                                    href="">LOGOUT</NavLink>
+                                <DropdownItem className="text-dark">
+                                    <button style={{marginLeft:"7px"}}>LOGOUT</button>
                                 </DropdownItem>
                             </DropdownMenu>
                         </UncontrolledDropdown>                        

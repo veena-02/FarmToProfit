@@ -1,12 +1,12 @@
 import React from 'react';
-import MyNavbar from './../MyNavbar/MyNavbar';
+import LessorNavbar from './../LessorNavbar/LessorNavbar';
 import { Form,FormGroup,Input, Label, Col, FormText } from 'reactstrap';
 
 const AddVehicle=()=>{
     return(
             <>
-            <MyNavbar />
-            <div className="register_background">
+            <LessorNavbar />
+            <div className="register_background" style={{marginBottom: "450px"}}>
                 
                 <Form className="register_us">
                 <h3 className="text-center">Add Equipment</h3>

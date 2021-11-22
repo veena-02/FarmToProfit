@@ -1,9 +1,9 @@
 import React,{Component} from 'react';
 import axios from 'axios';
 import {FormGroup, Label, Input, Form, FormText, Button} from 'reactstrap'
-import "./../../FarmerRegistration/FarmerRegistration.css";
-import ToolsNavbar from '../../toolsNavbar/ToolsNavbar.js';
+import ToolsNavbar from '../toolsNavbar/ToolsNavbar.js';
 
+<<<<<<< HEAD:src/Components/UserProfile/EditProfile/EditProfile.js
 export default class EditProfile extends Component {
     constructor(props) {
       super(props);
@@ -163,10 +163,13 @@ onChangeName(e) {
   }
 
 render(){
+=======
+const EditProfileF=()=>{
+>>>>>>> cc7464930fb7c310cbf4f5b4decfbfbdc9b224b4:src/Components/UserProfile_Farmer/EditProfileF.js
     return (
         <>
         <ToolsNavbar />
-        <div className="register_background" style={{marginBottom: "400px"}}>
+        <div className="register_background" style={{marginBottom: "460px"}}>
             
             <Form className="register_us">
             <h3 className="text-center">Edit Profile</h3>
@@ -321,4 +324,8 @@ render(){
     );
 }
 
+<<<<<<< HEAD:src/Components/UserProfile/EditProfile/EditProfile.js
 }
+=======
+export default EditProfileF;
+>>>>>>> cc7464930fb7c310cbf4f5b4decfbfbdc9b224b4:src/Components/UserProfile_Farmer/EditProfileF.js
