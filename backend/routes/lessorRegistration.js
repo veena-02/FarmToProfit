@@ -34,6 +34,7 @@ router.route('/register').post((req, res) => {
   newLessor.save()
     .then(() => console.log('Lessor added!'))
     .catch(err => console.log(err));
+    req.session.email=req.body.email;
 });
 
 module.exports = router;

@@ -39,6 +39,8 @@ router.route('/register').post((req, res) => {
   newFarmer.save()
     .then(() => console.log('Farmer added!'))
     .catch(err => console.log(err));
+    req.session.email=req.body.email;
+
 });
 });
 

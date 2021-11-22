@@ -23,9 +23,11 @@ router.route("/login").post((req,res)=>{
           else{
             //console.log('true');
             res.json(doc.fullname);
+            req.session.email=doc.email;
+            console.log(req.session);
           }
         })
-        console.log(doc.fullname);
+        console.log(req.session.email);
       }
     });
   }
@@ -41,11 +43,12 @@ router.route("/login").post((req,res)=>{
             res.sendStatus(400);            
           }
           else{
-            console.log('true');
+           
+            req.session.email=doc.email;
             res.sendStatus(200);
           }
         })
-        console.log(doc)
+        
       }
     });
 
