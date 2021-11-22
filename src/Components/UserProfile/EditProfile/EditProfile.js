@@ -8,7 +8,7 @@ const EditProfile=()=>{
     return (
         <>
         <ToolsNavbar />
-        <div className="register_background">
+        <div className="register_background" style={{marginBottom: "400px"}}>
             
             <Form className="register_us">
             <h3 className="text-center">Edit Profile</h3>

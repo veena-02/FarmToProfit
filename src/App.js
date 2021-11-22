@@ -12,6 +12,7 @@ import AddVehicle from './Components/AddVehicle/AddVehicle';
 import SameTypeEquip from './Components/EquipmentOfSameType/SameTypeEquip.js';
 import './App.css';
 import EditProfile from './Components/UserProfile/EditProfile/EditProfile';
+import Footer from './Components/Footer/Footer';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="editProfile" element={<EditProfile />} /> 
 
         </Routes>
+        <Footer />
     </div>
   );
 }
