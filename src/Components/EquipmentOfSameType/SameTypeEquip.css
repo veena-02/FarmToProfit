@@ -16,6 +16,7 @@
     box-shadow: 3px 0 3px  !important;
     margin: 7px;
     padding: 5px !important;
+    position: relative;
 }
 .equipment_card_img{
     width:300px;
@@ -25,9 +26,8 @@
 }
 .brand_model{
     background-color:white !important;
-    box-shadow: 1px 0 2px !important;
     margin: 20px;   
-    padding: 2px;
+    padding: 8px;
     font-family: 'Volkhov', serif;
     border-radius: 5px; 
     color: rgb(1, 45, 66) !important;
@@ -41,4 +41,21 @@ button{
 button:hover{
     color: rgb(1, 45, 66) !important;
     font-weight: bold !important;
+}
+.add_icon{
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+    font-size: 20px;
+    border-radius:3px ;
+    border: 1px solid midnightblue!important;
+    background-color:midnightblue!important;
+    color: white !important;
+    padding: 1px;
+    width: 34px;
+    height: 34px;
+}
+.add_icon:hover{
+    background-color:black   !important;
+    color: white !important;
 }

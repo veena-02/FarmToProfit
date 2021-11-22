@@ -1,6 +1,4 @@
 import React from 'react';
-import ToolsNavbar from './../toolsNavbar/ToolsNavbar';
-import {CardGroup, Card, CardTitle} from 'reactstrap';
 import EquipListCarousel from './EquipListCarousel';
 import './EquipmentList.css';
 import { NavLink } from 'react-router-dom';
@@ -12,7 +10,6 @@ const EquipmentList = () => {
     console.log(allTools);
     return (
         <>
-            <ToolsNavbar />
             <div className="parent_div">
             <div className="col-12"> 
                 <EquipListCarousel />

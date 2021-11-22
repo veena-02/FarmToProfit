@@ -1,14 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 import {FormGroup, Label, Input, Form, FormText, Button} from 'reactstrap'
-import "./../../FarmerRegistration/FarmerRegistration.css";
-import ToolsNavbar from '../../toolsNavbar/ToolsNavbar.js';
+import ToolsNavbar from '../toolsNavbar/ToolsNavbar.js';
 
-const EditProfile=()=>{
+const EditProfileF=()=>{
     return (
         <>
         <ToolsNavbar />
-        <div className="register_background" style={{marginBottom: "400px"}}>
+        <div className="register_background" style={{marginBottom: "460px"}}>
             
             <Form className="register_us">
             <h3 className="text-center">Edit Profile</h3>
@@ -164,4 +163,4 @@ const EditProfile=()=>{
     );
 }
 
-export default EditProfile;
+export default EditProfileF;

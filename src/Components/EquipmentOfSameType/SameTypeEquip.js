@@ -14,47 +14,52 @@ const SameTypeEquip=({match})=>{
             <div className="equipment_list_parent">
                 
                 <div className="equipment_card">
+                    <div>
+                    <button className="add_icon">+</button>
+                    </div>
                     <div className="equipment_card_img">
 
                     </div>
-                    <div className="brand_model">
-                    <ul style={{listStyleType:'none'}}>
-                        <li>Brand Name:</li>
-                        <li>Model :</li>
-                        <li><button>Show Details</button></li>
-                        </ul>
+                    <div className="brand_model"> 
+                        Brand Name:<br/>
+                        Model :<br/>
+                        <button>Show Details</button>
+                        
+                    </div>
+                    <div className="equipment_details"></div>
+                </div>
+                <div className="equipment_card">
+                    <div>
+                    <button className="add_icon">+</button>
+                    </div>
+                    <div className="equipment_card_img">
+
+                    </div>
+                    <div className="brand_model"> 
+                        Brand Name:<br/>
+                        Model :<br/>
+                        <button>Show Details</button>
+                        
+                    </div>
+                    <div className="equipment_details"></div>
+                </div>
+                <div className="equipment_card">
+                    <div>
+                    <button className="add_icon">+</button>
+                    </div>
+                    <div className="equipment_card_img">
+
+                    </div>
+                    <div className="brand_model"> 
+                        Brand Name:<br/>
+                        Model :<br/>
+                        <button>Show Details</button>
+                        
                     </div>
                     <div className="equipment_details"></div>
                 </div>
                 
-                <div className="equipment_card">
-                    <div className="equipment_card_img">
-
-                    </div>
-                    <div className="brand_model">
-                        <ul style={{listStyleType:'none'}}>
-                        <li>Brand Name:</li>
-                        <li>Model :</li>
-                        <li><button>Show Details</button></li>
-                        </ul>
-                    </div>
-                    <div className="equipment_details"></div>
-                    
-                </div>
                 
-                <div className="equipment_card">
-                    <div className="equipment_card_img">
-
-                    </div>
-                    <div className="brand_model">
-                    <ul style={{listStyleType:'none'}}>
-                        <li>Brand Name:</li>
-                        <li>Model :</li>
-                        <li><button>Show Details</button></li>
-                        </ul>
-                    </div>
-                    <div className="equipment_details"></div>
-                </div>
             </div>
         </div>
         </>

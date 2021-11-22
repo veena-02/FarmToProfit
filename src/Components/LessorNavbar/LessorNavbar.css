@@ -1,0 +1,12 @@
+
+    @media only screen and (min-width: 1260px){
+        .shiftRight{
+            position: absolute!important;
+            right: -50vw!important;
+        }
+        .shiftRight2{
+            position: absolute!important;
+            right: -50vw!important;
+            top: 50px!important;
+        }
+    }

@@ -145,7 +145,7 @@ export default class LessorRegistration extends Component {
     return (
         <>
         <MyNavbar />
-        <div className="register_background" style={{marginBottom: "400px"}}>
+        <div className="register_background" style={{marginBottom: "450px"}}>
             
             <Form className="register_us" onSubmit={this.onSubmit}>
             <h3 className="text-center">LESSOR REGISTRATION</h3>
