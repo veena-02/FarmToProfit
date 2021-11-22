@@ -14,7 +14,7 @@ const ToolsNavbar = () =>{
                 dark
                 
             >
-                <NavbarBrand href="/" className="font_changes">
+                <NavbarBrand href="/equipmentList" className="font_changes">
                     {/* <img src = {brandName} /> */}
                     Farm To Profit
                 </NavbarBrand>
@@ -25,22 +25,22 @@ const ToolsNavbar = () =>{
                         navbar
                     >                        
                         <NavItem>
-                            <NavLink href="#tractors">
+                            <NavLink href="/equipmentList#tractors">
                                 TRACTORS
                             </NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="#implements">
+                            <NavLink href="/equipmentList#implements">
                                 IMPLEMENTS
                             </NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="#harvester">
+                            <NavLink href="/equipmentList#harvester">
                                 HARVESTER
                             </NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="#tools">
+                            <NavLink href="/equipmentList#tools">
                                 TOOLS
                             </NavLink>
                         </NavItem>
@@ -58,7 +58,7 @@ const ToolsNavbar = () =>{
                             <DropdownMenu right>
                                 <DropdownItem>
                                     <NavLink className="text-dark"
-                                    href="">EDIT PROFILE</NavLink>
+                                    href="/editProfile">EDIT PROFILE</NavLink>
                                 </DropdownItem>
                                 <DropdownItem divider />
                                 <DropdownItem>

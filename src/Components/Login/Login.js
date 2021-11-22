@@ -5,6 +5,7 @@ import axios from "axios";
 import { FormGroup, Label, Input, Form, FormText, Button } from "reactstrap";
 //import DatePicker from 'react-datepicker';
 import "./Login.css";
+import MyNavbar from './../MyNavbar/MyNavbar';
 
 export default class Login extends Component {
   constructor(props) {
@@ -85,6 +86,7 @@ export default class Login extends Component {
   render() {
     return (
       <>
+        <MyNavbar />
         <div className="register_background">
           <Form className="register_us" onSubmit={this.onSubmit}>
             <h3 className="text-center">LOGIN</h3>

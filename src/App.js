@@ -11,6 +11,7 @@ import LessorRegistration from './Components/LessorRegistration/LessorRegistrati
 import AddVehicle from './Components/AddVehicle/AddVehicle';
 import SameTypeEquip from './Components/EquipmentOfSameType/SameTypeEquip.js';
 import './App.css';
+import EditProfile from './Components/UserProfile/EditProfile/EditProfile';
 
 function App() {
   return (
@@ -24,7 +25,9 @@ function App() {
           <Route path=":equipmentId" element={<EquipmentById/>} />
           <Route path="contactUs" element={<ContactUs />} />
           <Route path="addvehicle" element={<AddVehicle />} />
-          <Route path="equipmentList/:equipType" element={<SameTypeEquip />} /> 
+          <Route path="equipmentList/:equipType" element={<SameTypeEquip />} />
+          <Route path="editProfile" element={<EditProfile />} /> 
+
         </Routes>
     </div>
   );

@@ -1,12 +1,14 @@
 import React from 'react';
 import {useParams} from 'react-router-dom';
 import './SameTypeEquip.css';
+import ToolsNavbar from '../toolsNavbar/ToolsNavbar.js'
 
 const SameTypeEquip=({match})=>{
     
     let {equipType} = useParams();
     return(
         <>
+        <ToolsNavbar />
         <div>
             <h2 className="equipment_type_heading">{equipType.split("$").join(" ").toUpperCase()}</h2>
             <div className="equipment_list_parent">
