@@ -1,28 +1,189 @@
-import React from 'react';
+import React,{Component} from 'react';
 import axios from 'axios';
 import {FormGroup, Label, Input, Form, FormText, Button} from 'reactstrap'
-import LessorNavbar from '../LessorNavbar/LessorNavbar.js';
+import LessorNavbar from '../LessorNavbar/LessorNavbar';
 
-const EditProfileL=()=>{
+export default class EditProfile extends Component {
+    constructor(props) {
+      super(props);
+  
+      this.onChangeName=this.onChangeName.bind(this);
+      this.onChangePnumber = this.onChangePnumber.bind(this);
+      this.onChangeStreetNo = this.onChangeStreetNo.bind(this);
+      this.onChangeStreetName = this.onChangeStreetName.bind(this);
+      this.onChangeCity=this.onChangeCity.bind(this);
+      this.onChangePincode=this.onChangePincode.bind(this);
+      this.onChangeAadhar= this.onChangeAadhar.bind(this);
+      this.onChangeEmail=this.onChangeEmail.bind(this);
+      this.onChangeHaveAccount=this.onChangeHaveAccount.bind(this);
+      this.onChangePassword=this.onChangePassword.bind(this);
+      this.onChangeConfirmPassword=this.onChangeConfirmPassword.bind(this);
+      this.onSubmit = this.onSubmit.bind(this);
+      // this.onStart=this.onStart.bind(this);
+  
+      this.state = {
+        name: '',
+        pnumber: 0,
+        streetNo:0,
+        streetName: '',
+        city:'',
+        pincode:0,
+        aadhar:0,
+        email: localStorage.getItem('email'),
+        haveAccount: true,
+        password:'',
+        confirmPassword:'',
+        msg:(<span className="small"></span>)
+      }
+    }
+    componentDidMount() {
+        const user={mail:localStorage.getItem('email'),  rt:localStorage.getItem('rt')}
+          // var mail="ab999@srmist.edu.in";
+            axios.post('http://localhost:5000/editProfile/',user)
+              .then(response => {
+                if (response.data) {
+                  this.setState({
+                    name: response.data.fullname,
+                    pnumber: response.data.pnumber,
+                    streetNo:response.data.streetnumber ,
+                    streetName: response.data.streetname,
+                    city:response.data.city,
+                    pincode:response.data.pincode,
+                    aadhar:response.data.aadhar,
+                    email:response.data.email,
+                    haveAccount: response.data.account,
+                    password:response.data.password,
+                    confirmPassword:response.data.password,
+                    // users: response.data.map(user => user.username),
+                    // username: response.data[0].username
+                  })
+                }
+              })
+              .catch((error) => {
+                console.log(error);
+              })
+              }
+  
+//     call(){
+//           axios.get('http://localhost:5000/editProfile/')
+//     this.setState({name: axios.get('http://localhost:5000/editProfile/').then(res=>res.data)
+//     })
+//     // .then(res => this.setState({ 
+//     //     name :res
+//     //   }));
+// }
+
+onChangeName(e) {
+    this.setState({
+      name: e.target.value
+    })
+  }
+  onChangePnumber(e){
+      this.setState({
+          pnumber: e.target.value
+      })
+  }
+
+  onChangeStreetNo (e) {
+    this.setState({
+      streetNo: e.target.value
+    })
+  }
+
+  onChangeStreetName (e) {
+    this.setState({
+      streetName: e.target.value
+    })
+  }
+
+  onChangeCity(e) {
+    this.setState({
+      city: e.target.value
+    })
+  }
+  onChangePincode (e) {
+    this.setState({
+      pincode: e.target.value
+    })
+  } onChangeAadhar (e) {
+    this.setState({
+      aadhar: e.target.value
+    })
+  } onChangeEmail (e) {
+    this.setState({
+      email: e.target.value
+    })
+  }
+  onChangeHaveAccount(e) {
+    this.setState({
+      haveAccount: e.target.value
+    })
+  } onChangePassword(e) {
+    this.setState({
+      password: e.target.value
+    })
+  }
+  onChangeConfirmPassword(e) {
+    this.setState({ 
+      confirmPassword : e.target.value
+    })
+    // if (this.state.password===this.state.confirmPassword){
+    //   this.setState({msg:(<span className="small text-success">Password Matches!</span>)})
+    // }
+    // else{
+    //   this.setState({msg:(<span className="small text-danger">Password does not Matches!</span>)})
+    // }
+    
+  }
+  onSubmit(e) {
+    e.preventDefault();
+
+    const farmer = {
+      name: this.state.name,
+      pnumber: this.state.pnumber,
+      streetNo: this.state.streetNo,
+      streetName: this.state.streetName,
+      city: this.state.city,
+      pincode: this.state.pincode,
+      email:this.state.email,
+      haveAccount: this.state.haveAccount,
+      password: this.state.password
+    }
+
+    console.log(farmer);
+    if (this.state.password===this.state.confirmPassword){
+    axios.post('http://localhost:5000/editProfile/edit', farmer)
+      .then(res => console.log(res.data));
+
+    window.location = '/';
+    }
+    else{
+      this.setState({msg:(<span className="small text-danger">Password does not Matches!</span>)})
+    }
+    
+  }
+
+render(){
     return (
         <>
+        
         <LessorNavbar />
-        <div className="register_background" style={{marginBottom: "460px"}}>
-            
-            <Form className="register_us">
+        
+        <div className="register_background" style={{marginBottom: "760px", }}>
+           <div className="container" > 
+            <Form className="register_us" onSubmit={this.onSubmit}>
             <h3 className="text-center">Edit Profile</h3>
-               
             <FormGroup>
                 <Label for="name">
-                Full Name
+                Full Name  
                 </Label>
                 <Input
                     id="name"
                     name="name"
                     placeholder="Full Name"
                     type="text"
-                    //value={this.state.name}
-                   // onChange={this.onChangeName}
+                    value= {this.state.name}
+                    onChange={this.onChangeName}
                 />
             </FormGroup>    
             <FormGroup>
@@ -34,8 +195,8 @@ const EditProfileL=()=>{
                     name="pnumber"
                     placeholder="Phone Number"
                     type="number"
-                    
-                   // onChange={this.onChangePnumber}
+                    value={this.state.pnumber}
+                   onChange={this.onChangePnumber}
                 />
             </FormGroup>
             <FormGroup>
@@ -47,8 +208,8 @@ const EditProfileL=()=>{
                     name="streetNo"
                     placeholder="Street number"
                     type="number"
-                    //value={this.state.streetNo}
-                   // onChange={this.onChangeStreetNo}
+                    value={this.state.streetNo}
+                    onChange={this.onChangeStreetNo}
                 />
                 <Input
                     className="mt-4"
@@ -56,8 +217,8 @@ const EditProfileL=()=>{
                     name="streetName"
                     placeholder="Street Name"
                     type="text"
-                    //value={this.state.streetName}
-                   // onChange={this.onChangeStreetName}
+                    value={localStorage.getItem('email')}
+                    onChange={this.onChangeStreetName}
                 />
                 <Input
                     className="mt-4"
@@ -65,8 +226,8 @@ const EditProfileL=()=>{
                     name="city"
                     placeholder="City"
                     type="text"
-                    //value={this.state.city}
-                   // onChange={this.onChangeCity}
+                    value={this.state.city}
+                    onChange={this.onChangeCity}
                 />
                 <Input
                     className="mt-4"
@@ -74,8 +235,8 @@ const EditProfileL=()=>{
                     name="pincode"
                     placeholder="Pincode"
                     type="text"
-                    //value={this.state.pincode}
-                   // onChange={this.onChangePincode}
+                    value={this.state.pincode}
+                    onChange={this.onChangePincode}
                 />
             </FormGroup>
             <FormGroup>
@@ -87,9 +248,9 @@ const EditProfileL=()=>{
                     name="aadhar"
                     placeholder=""
                     type="Number"
-                    //value={this.state.aadhar}
+                    value={this.state.aadhar}
                    // onChange={this.onChangeAadhar}
-
+                    readOnly
                 />
             </FormGroup>
             <FormGroup>
@@ -101,7 +262,8 @@ const EditProfileL=()=>{
                     name="email"
                     placeholder=""
                     type="email"
-                    //value={this.state.email}
+                    value={this.state.email}
+                    readOnly
                    // onChange={this.onChangeEmail}
                 />
         <FormGroup>
@@ -113,8 +275,8 @@ const EditProfileL=()=>{
                 id="exampleSelect"
                 name="haveAccount"
                 type="select"
-               // value={this.state.haveAccount}
-               // onChange={this.onChangeHaveAccount}
+                value={this.state.haveAccount}
+                onChange={this.onChangeHaveAccount}
             >
                 <option>
                     Yes
@@ -136,8 +298,8 @@ const EditProfileL=()=>{
                 name="password"
                 placeholder=""
                 type="password"
-               // value={this.state.password}
-               // onChange={this.onChangePassword}
+                value={this.state.password}
+                onChange={this.onChangePassword}
             />
         </FormGroup>
         <FormGroup>
@@ -149,18 +311,20 @@ const EditProfileL=()=>{
                 name="confirmPassword"
                 placeholder=""
                 type="password"
-                //value={this.state.confirmPassword}
-               // onChange={this.onChangeConfirmPassword}
+                value={this.state.confirmPassword}
+                onChange={this.onChangeConfirmPassword}
             />
             <Label className="small small"></Label>
         </FormGroup>
         
-        <input type="submit" value="Register" className="btn btn-primary" />
+        <input type="submit" value="Register" className="btn btn-primary" onClick={this.onSubmit}/>
     
         </Form>
         </div>
+        </div>
+        
     </>
     );
 }
 
-export default EditProfileL;
+}

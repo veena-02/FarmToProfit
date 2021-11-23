@@ -5,7 +5,8 @@ import axios from "axios";
 import { FormGroup, Label, Input, Form, FormText, Button } from "reactstrap";
 //import DatePicker from 'react-datepicker';
 import "./Login.css";
-import MyNavbar from './../MyNavbar/MyNavbar';
+import MyNavbar from "./../MyNavbar/MyNavbar";
+
 
 export default class Login extends Component {
   constructor(props) {
@@ -76,19 +77,30 @@ export default class Login extends Component {
   }
 
   async loginUser(users) {
-   await axios.post("http://localhost:5000/login/login", users) 
-    .then( response=>{ console.log(response); window.location='/equipmentList';})
-    .catch(err=>{console.log(err);});
-    axios.get('http://localhost:5000/login/');
+    await axios
+      .post("http://localhost:5000/login/login", users)
+      .then((response) => {
+        console.log(response);
+        localStorage.setItem("email", response.data);
+        localStorage.setItem("rt",this.state.registrationType);
+        if (this.state.registrationType==='Farmer'){
+          window.location="/equipmentList";
+        }
+        else{
+        window.location = "/lessorDashboard";
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // axios.get('http://localhost:5000/login/');
   }
-      
-  
 
   render() {
     return (
       <>
         <MyNavbar />
-        <div className="register_background" style={{marginBottom: "450px"}}>
+        <div className="register_background" style={{ marginBottom: "450px" }}>
           <Form className="register_us" onSubmit={this.onSubmit}>
             <h3 className="text-center">LOGIN</h3>
 
@@ -110,7 +122,7 @@ export default class Login extends Component {
                 name="password"
                 placeholder=""
                 type="password"
-                   value={this.state.password}
+                value={this.state.password}
                 onChange={this.onChangePassword}
               />
             </FormGroup>

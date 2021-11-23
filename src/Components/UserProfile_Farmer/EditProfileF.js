@@ -3,23 +3,23 @@ import axios from 'axios';
 import {FormGroup, Label, Input, Form, FormText, Button} from 'reactstrap'
 import ToolsNavbar from '../toolsNavbar/ToolsNavbar.js';
 
-<<<<<<< HEAD:src/Components/UserProfile/EditProfile/EditProfile.js
 export default class EditProfile extends Component {
     constructor(props) {
       super(props);
   
-    //   this.call = this.call.bind(this);
-    //   this.onChangePnumber = this.onChangePnumber.bind(this);
-    //   this.onChangeStreetNo = this.onChangeStreetNo.bind(this);
-    //   this.onChangeStreetName = this.onChangeStreetName.bind(this);
-    //   this.onChangeCity=this.onChangeCity.bind(this);
-    //   this.onChangePincode=this.onChangePincode.bind(this);
-    //   this.onChangeAadhar= this.onChangeAadhar.bind(this);
-    //   this.onChangeEmail=this.onChangeEmail.bind(this);
-    //   this.onChangeHaveAccount=this.onChangeHaveAccount.bind(this);
-    //   this.onChangePassword=this.onChangePassword.bind(this);
-    //   this.onChangeConfirmPassword=this.onChangeConfirmPassword.bind(this);
-    //   this.onSubmit = this.onSubmit.bind(this);
+      this.onChangeName=this.onChangeName.bind(this);
+      this.onChangePnumber = this.onChangePnumber.bind(this);
+      this.onChangeStreetNo = this.onChangeStreetNo.bind(this);
+      this.onChangeStreetName = this.onChangeStreetName.bind(this);
+      this.onChangeCity=this.onChangeCity.bind(this);
+      this.onChangePincode=this.onChangePincode.bind(this);
+      this.onChangeAadhar= this.onChangeAadhar.bind(this);
+      this.onChangeEmail=this.onChangeEmail.bind(this);
+      this.onChangeHaveAccount=this.onChangeHaveAccount.bind(this);
+      this.onChangePassword=this.onChangePassword.bind(this);
+      this.onChangeConfirmPassword=this.onChangeConfirmPassword.bind(this);
+      this.onSubmit = this.onSubmit.bind(this);
+      // this.onStart=this.onStart.bind(this);
   
       this.state = {
         name: '',
@@ -29,7 +29,7 @@ export default class EditProfile extends Component {
         city:'',
         pincode:0,
         aadhar:0,
-        email:'',
+        email: localStorage.getItem('email'),
         haveAccount: true,
         password:'',
         confirmPassword:'',
@@ -37,9 +37,11 @@ export default class EditProfile extends Component {
       }
     }
     componentDidMount() {
-            axios.get('http://localhost:5000/editProfile/')
+        const user={mail:localStorage.getItem('email'), rt:localStorage.getItem('rt')}
+          // var mail="ab999@srmist.edu.in";
+            axios.post('http://localhost:5000/editProfile/',user)
               .then(response => {
-                if (response.data.length > 0) {
+                if (response.data) {
                   this.setState({
                     name: response.data.fullname,
                     pnumber: response.data.pnumber,
@@ -143,7 +145,6 @@ onChangeName(e) {
       streetName: this.state.streetName,
       city: this.state.city,
       pincode: this.state.pincode,
-      aadhar: this.state.aadhar,
       email:this.state.email,
       haveAccount: this.state.haveAccount,
       password: this.state.password
@@ -151,7 +152,7 @@ onChangeName(e) {
 
     console.log(farmer);
     if (this.state.password===this.state.confirmPassword){
-    axios.post('http://localhost:5000/editProfile/save', farmer)
+    axios.post('http://localhost:5000/editProfile/edit', farmer)
       .then(res => console.log(res.data));
 
     window.location = '/';
@@ -163,15 +164,14 @@ onChangeName(e) {
   }
 
 render(){
-=======
-const EditProfileF=()=>{
->>>>>>> cc7464930fb7c310cbf4f5b4decfbfbdc9b224b4:src/Components/UserProfile_Farmer/EditProfileF.js
     return (
         <>
+        
         <ToolsNavbar />
-        <div className="register_background" style={{marginBottom: "460px"}}>
-            
-            <Form className="register_us">
+        
+        <div className="register_background" style={{marginBottom: "760px", }}>
+           <div className="container" > 
+            <Form className="register_us" onSubmit={this.onSubmit}>
             <h3 className="text-center">Edit Profile</h3>
             <FormGroup>
                 <Label for="name">
@@ -182,7 +182,7 @@ const EditProfileF=()=>{
                     name="name"
                     placeholder="Full Name"
                     type="text"
-                    value={this.state.name}
+                    value= {this.state.name}
                     onChange={this.onChangeName}
                 />
             </FormGroup>    
@@ -195,8 +195,8 @@ const EditProfileF=()=>{
                     name="pnumber"
                     placeholder="Phone Number"
                     type="number"
-                    
-                   // onChange={this.onChangePnumber}
+                    value={this.state.pnumber}
+                   onChange={this.onChangePnumber}
                 />
             </FormGroup>
             <FormGroup>
@@ -217,7 +217,7 @@ const EditProfileF=()=>{
                     name="streetName"
                     placeholder="Street Name"
                     type="text"
-                    value={this.state.streetName}
+                    value={localStorage.getItem('email')}
                     onChange={this.onChangeStreetName}
                 />
                 <Input
@@ -250,7 +250,7 @@ const EditProfileF=()=>{
                     type="Number"
                     value={this.state.aadhar}
                    // onChange={this.onChangeAadhar}
-
+                    readOnly
                 />
             </FormGroup>
             <FormGroup>
@@ -263,6 +263,7 @@ const EditProfileF=()=>{
                     placeholder=""
                     type="email"
                     value={this.state.email}
+                    readOnly
                    // onChange={this.onChangeEmail}
                 />
         <FormGroup>
@@ -316,16 +317,14 @@ const EditProfileF=()=>{
             <Label className="small small"></Label>
         </FormGroup>
         
-        <input type="submit" value="Register" className="btn btn-primary" />
+        <input type="submit" value="Register" className="btn btn-primary" onClick={this.onSubmit}/>
     
         </Form>
         </div>
+        </div>
+        
     </>
     );
 }
 
-<<<<<<< HEAD:src/Components/UserProfile/EditProfile/EditProfile.js
 }
-=======
-export default EditProfileF;
->>>>>>> cc7464930fb7c310cbf4f5b4decfbfbdc9b224b4:src/Components/UserProfile_Farmer/EditProfileF.js
