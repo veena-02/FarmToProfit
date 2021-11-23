@@ -18,8 +18,8 @@ export default class Login extends Component {
     this.loginUser = this.loginUser.bind(this);
 
     this.state = {
-      user: "",
-      password: "",
+      user: "ab999@srmist.edu.in",
+      password: "Ashash",
       registrationType: "Farmer",
       msg: <span className="small"></span>,
     };
@@ -79,6 +79,7 @@ export default class Login extends Component {
    await axios.post("http://localhost:5000/login/login", users) 
     .then( response=>{ console.log(response); window.location='/equipmentList';})
     .catch(err=>{console.log(err);});
+    axios.get('http://localhost:5000/login/');
   }
       
   
@@ -98,7 +99,7 @@ export default class Login extends Component {
                 name="user"
                 placeholder=""
                 type="text"
-                //value={this.state.name}
+                value={this.state.name}
                 onChange={this.onChangeUser}
               />
             </FormGroup>
@@ -109,7 +110,7 @@ export default class Login extends Component {
                 name="password"
                 placeholder=""
                 type="password"
-                // value={this.state.password}
+                   value={this.state.password}
                 onChange={this.onChangePassword}
               />
             </FormGroup>
