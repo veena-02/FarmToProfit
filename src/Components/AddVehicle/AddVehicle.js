@@ -4,7 +4,7 @@ import { Form,FormGroup,Input, Label, Col, FormText } from 'reactstrap';
 
 const AddVehicle=()=>{
     return(
-            <>
+             <>
             <LessorNavbar />
             <div className="register_background" style={{marginBottom: "450px"}}>
                 
