@@ -155,7 +155,7 @@ onChangeName(e) {
     axios.post('http://localhost:5000/editProfile/edit', farmer)
       .then(res => console.log(res.data));
 
-    window.location = '/';
+    window.location = '/equipmentList';
     }
     else{
       this.setState({msg:(<span className="small text-danger">Password does not Matches!</span>)})
@@ -314,7 +314,7 @@ render(){
                 value={this.state.confirmPassword}
                 onChange={this.onChangeConfirmPassword}
             />
-            <Label className="small small"></Label>
+            <Label className="small small">{this.state.msg}</Label>
         </FormGroup>
         
         <input type="submit" value="Register" className="btn btn-primary" onClick={this.onSubmit}/>
