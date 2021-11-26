@@ -3,7 +3,6 @@ let Equipment = require('../models/equipment.models.js');
 
 router.route('/addvehicle').post((req, res) => {
   const newEquipment = new Equipment({
-
     name: req.body.name,
     brand: req.body.brand,
     purchase_date: req.body.purchaseDate,

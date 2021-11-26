@@ -1,0 +1,25 @@
+.equipment_body{
+    width: 60vw;
+    height: 800px;
+    background-color:white !important;
+    box-shadow:5px 0 5px  !important;
+    border-radius: 10px !important;
+    margin: 7px !important;
+    padding: 5px;
+}
+.eq_parent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.equipment_img{
+    height:500px;
+    width:50vw;
+    box-shadow: 2px 0 2px !important;
+    margin: 10px 5vw;
+}
+.equi_description{
+    width:50vw;
+    margin:5vw;
+    padding: 50px;
+}

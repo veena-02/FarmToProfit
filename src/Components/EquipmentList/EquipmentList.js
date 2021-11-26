@@ -24,7 +24,7 @@ const EquipmentList = () => {
                         return(
                             <>
                                 <NavLink to={`/equipmentList/${name.split(" ").join("$")}`} className="card_style"> 
-                                    {name.toUpperCase()}
+                                     {name.toUpperCase()}
                                 </NavLink>
                             </>
                         );

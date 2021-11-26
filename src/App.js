@@ -29,6 +29,7 @@ function App() {
           <Route path="contactUs" element={<ContactUs />} />
           <Route path="addvehicle" element={<AddVehicle />} />
           <Route path="equipmentList/:equipType" element={<SameTypeEquip />} />
+          <Route path="equipmentList/:equipType/:equip" element={<EquipmentById />} />
           <Route path="editProfileF" element={<EditProfileF />} /> 
           <Route path="editProfileL" element={<EditProfileL />} /> 
           <Route path="lessorDashboard" element={<LessorDashboard />}/>
