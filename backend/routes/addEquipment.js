@@ -17,7 +17,6 @@ router.route('/addvehicle').post((req, res) => {
   newEquipment.save()
     .then(() => console.log('Equipment added!'))
     .catch(err => console.log(err));
-    req.session.email=req.body.email;
 });
 
 
