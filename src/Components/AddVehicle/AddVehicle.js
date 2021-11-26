@@ -11,19 +11,21 @@ class AddVehicle extends Component{
         this.onChangeBrand = this.onChangeBrand.bind(this);
         this.onChangePurchaseDate = this.onChangePurchaseDate.bind(this);
         this.onChangePurchasePrice = this.onChangePurchasePrice.bind(this);
-        this.onChangeEquipmentType = this.onChangeEquipmentType.bind(this);
-        this.onChangeVinNo = this.onChangeVinNo.bind(this);
-        //this.onChangeDescription = this.Description.bind(this);
+        this.onChangeSubcat=this.onChangeSubcat.bind(this);
+        this.onChangeCat = this.onChangeCat.bind(this);
+        this.onChangeVin = this.onChangeVin.bind(this);
+        this.onChangeDescription = this.onChangeDescription.bind(this);
         this.state = {
             name: "",
             brand: "",
             purchaseDate: "",
             purchasePrice: "",
-            equipmentType: "",
+            cat: "Tractor",
+            subcat:[],
             vinNo: "",
             // description: [""],
             // subtypeCat: ["Mini Tractor","wd4 "],
-          };
+        }
 
     }
     onChangeName(e){
@@ -46,19 +48,34 @@ class AddVehicle extends Component{
       purchasePrice: e.target.value
     }) 
     }
-    onChangeVinNo(e){
+    onChangeVin(e){
        this.setState({
       vinNo: e.target.value
     }) 
     }
-    // onChangeDescription(e){
-    //    this.setState({
-    //   description: e.target.value
-    // }) 
-    //}
-    onChangeEquipmentType(e){
+    onChangeDescription(e){
        this.setState({
-      equipmentType: e.target.value
+      description: e.target.value
+    }) 
+    }
+    onChangeSubcat(e){
+        this.setState({subcat:e.target.value})
+        if (this.state.cat==='Tractor'){
+            this.setState({subcat:["mini tractor","wd4 tractor","ac cabin tractor"]})
+        }
+        else if(this.state.cat==='Implements'){
+            this.setState({subcat:["rotary tiller","cultivator", "plough", "harrow", "trailer","sprayer"]})
+        }
+        else if(this.state.cat==='Harvest'){
+            this.setState({subcat:["self propelled", "tractor mounted"]})
+        }
+        else if(this.state.cat==='Tools'){
+            this.setState({subcat:["tarpaulin","brush cutter","power weeder","power tiller","power reaper","earth auger","mowers and trimmers","accessories"]})
+        }
+    }
+    onChangeCat(e){
+       this.setState({
+      cat: e.target.value
     }) 
     }
 
@@ -69,11 +86,12 @@ class AddVehicle extends Component{
             brand: this.state.brand,
             purchaseDate: this.state.purchaseDate,
             purchasePrice: this.state.purchasePrice,
-            equipmentType: this.state.equipmentType,
+            cat: this.state.cat,
+            subcat:this.state.subcat,
             vinNo: this.state.vinNo,
             //description: this.state.description
         }
-        axios.post('http://localhost:5000/addvehicle', equipment)
+        axios.post('http://localhost:5000/addvehicle/add', equipment)
       .then(res => console.log(res.data));
       window.location = "/equipmentList";
     }
@@ -84,7 +102,7 @@ class AddVehicle extends Component{
             <LessorNavbar />
             <div className="register_background" style={{marginBottom: "450px"}}>
                 
-         <Form className="register_us">
+         <Form className="register_us" onSubmit={this.onSubmit}>
                 <h3 className="text-center">Add Equipment</h3>
                    
                 <FormGroup>
@@ -144,7 +162,7 @@ class AddVehicle extends Component{
                         name="vinNo"
                         placeholder="vinNo"
                         type="Number"
-                        onChange={this.onChangeVinNo}
+                        onChange={this.onChangeVin}
     
                     />
                 </FormGroup>
@@ -162,19 +180,37 @@ class AddVehicle extends Component{
                     />
                 </FormGroup> */}
                 <FormGroup>
-                <Label for="equipmentType">Equipment Type</Label>
+                <Label for="equipmentType">Category</Label>
                 <Input
                     id="equipmentType"
-                    name="equipmentType"
+                    name="cat"
                     type="select"
-                    onChange={this.onChangeEquipmentType}
+                    onChange={this.onChangeCat}
                 >
-                    <option>Tractor</option>
-                    <option>Harvestors</option>
-                    <option>Implements</option>
-                    <option>Tools</option>
+                <option>Tractor</option>
+                <option>Harvestor</option>
+                <option>Implements</option>
+                <option>Tools</option>
+              </Input>
+            </FormGroup>
+            <FormGroup>
+                <Label for="equipmentType">Sub Category</Label>
+                <Input
+                    id="equipmentType"
+                    name="subcat"
+                    type="select"
+                    onChange={this.onChangeSubcat}>
+                        {
+                            this.state.subcat.map(function(subcat) {
+                            return <option 
+                              key={subcat}
+                              value={subcat}>{subcat}
+                              </option>;
+                            
+                          })
+                    }
                 </Input>
-                </FormGroup>
+            </FormGroup>
                 {/* <FormGroup>
                 <Label for="equipmentSubType">Equipment Sub Type</Label>
                 <Input
