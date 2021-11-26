@@ -37,10 +37,9 @@ router.route('/register').post((req, res) => {
   
   console.log(newFarmer+'00')
   newFarmer.save()
-    .then(() => console.log('Farmer added!'))
+    .then(() => res.json(req.body.email))
     .catch(err => console.log(err));
-    req.session.email=req.body.email;
-
+   
 });
 });
 
