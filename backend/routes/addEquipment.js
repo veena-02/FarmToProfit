@@ -2,7 +2,7 @@ const router = require('express').Router();
 let Equipment = require('../models/equipment.models.js');
 
 router.route('/addvehicle').post((req, res) => {
-  const newEquipment = new addEquipment({
+  const newEquipment = new Equipment({
 
     name: req.body.name,
     brand: req.body.brand,
@@ -10,7 +10,7 @@ router.route('/addvehicle').post((req, res) => {
     purchase_price: req.body.purchasePrice,
     vin_no: req.body.vinNo,
     equipment_type: req.body.equipmentType,
-    description: req.body.description
+    //description: req.body.description
     });
   
   console.log(newFarmer+'00')
@@ -19,6 +19,6 @@ router.route('/addvehicle').post((req, res) => {
     .catch(err => console.log(err));
     req.session.email=req.body.email;
 });
-});
+
 
 module.exports = router;

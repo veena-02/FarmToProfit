@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {Component} from 'react';
 import LessorNavbar from './../LessorNavbar/LessorNavbar';
 import { Form,FormGroup,Input, Label, Col, FormText } from 'reactstrap';
 import axios from 'axios';
@@ -13,7 +13,7 @@ class AddVehicle extends Component{
         this.onChangePurchasePrice = this.onChangePurchasePrice.bind(this);
         this.onChangeEquipmentType = this.onChangeEquipmentType.bind(this);
         this.onChangeVinNo = this.onChangeVinNo.bind(this);
-        this.onChangeDescription = this.Description.bind(this);
+        //this.onChangeDescription = this.Description.bind(this);
         this.state = {
             name: "",
             brand: "",
@@ -21,7 +21,8 @@ class AddVehicle extends Component{
             purchasePrice: "",
             equipmentType: "",
             vinNo: "",
-            description: ""
+            // description: [""],
+            // subtypeCat: ["Mini Tractor","wd4 "],
           };
 
     }
@@ -50,11 +51,11 @@ class AddVehicle extends Component{
       vinNo: e.target.value
     }) 
     }
-    onChangeDescription(e){
-       this.setState({
-      description: e.target.value
-    }) 
-    }
+    // onChangeDescription(e){
+    //    this.setState({
+    //   description: e.target.value
+    // }) 
+    //}
     onChangeEquipmentType(e){
        this.setState({
       equipmentType: e.target.value
@@ -70,7 +71,7 @@ class AddVehicle extends Component{
             purchasePrice: this.state.purchasePrice,
             equipmentType: this.state.equipmentType,
             vinNo: this.state.vinNo,
-            description: this.state.description
+            //description: this.state.description
         }
         axios.post('http://localhost:5000/addvehicle', equipment)
       .then(res => console.log(res.data));
@@ -118,7 +119,7 @@ class AddVehicle extends Component{
                         id="purchaseDate"
                         name="purchaseDate"
                         placeholder="Purchase Date"
-                        type="number"
+                        type="string"
                         onChange={this.onChangePurchaseDate}
                     />
                 </FormGroup>
@@ -147,7 +148,7 @@ class AddVehicle extends Component{
     
                     />
                 </FormGroup>
-                <FormGroup>
+                {/* <FormGroup>
                     <Label for="description">
                     Description Tags
                     </Label>
@@ -159,7 +160,7 @@ class AddVehicle extends Component{
                         onChange={this.onChangeDescription}
     
                     />
-                </FormGroup>
+                </FormGroup> */}
                 <FormGroup>
                 <Label for="equipmentType">Equipment Type</Label>
                 <Input
@@ -167,14 +168,25 @@ class AddVehicle extends Component{
                     name="equipmentType"
                     type="select"
                     onChange={this.onChangeEquipmentType}
-
                 >
-                <option>Tractor</option>
-                <option>Harvestor</option>
-                <option>Implements</option>
-                <option>Tools</option>
-              </Input>
-            </FormGroup>
+                    <option>Tractor</option>
+                    <option>Harvestors</option>
+                    <option>Implements</option>
+                    <option>Tools</option>
+                </Input>
+                </FormGroup>
+                {/* <FormGroup>
+                <Label for="equipmentSubType">Equipment Sub Type</Label>
+                <Input
+                    id="equipmentSubType"
+                    name="equipmentSubType"
+                    type="select"
+                    onChange={this.onChangeEquipmentType}
+                >
+
+                </Input>
+                </FormGroup>
+
                 <FormGroup>
                     <Label for="images" sm={2}>Images</Label>
                         <Col sm={10}>
@@ -194,7 +206,7 @@ class AddVehicle extends Component{
                              .pdf format only
                             </FormText>
                         </Col>
-                </FormGroup>
+                </FormGroup> */}
             
             <input type="submit" value="Add Equipment" className="btn btn-primary" />
         
