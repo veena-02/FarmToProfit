@@ -4,6 +4,7 @@ import {useParams} from 'react-router-dom';
 import './SameTypeEquip.css';
 import ToolsNavbar from '../toolsNavbar/ToolsNavbar.js'
 import EquipmentCard from './../EquipmentCard/EquipmentCard';
+import Loading from './../Loading';
 
 const SameTypeEquip=({match})=>{
     
@@ -34,6 +35,10 @@ const SameTypeEquip=({match})=>{
         getEquipList();
     },[])
 
+    if(loading){
+        return <Loading />
+    }
+
     return(
         <>
         <ToolsNavbar />
@@ -41,14 +46,14 @@ const SameTypeEquip=({match})=>{
             <h2 className="equipment_type_heading">{equipType.split("$").join(" ").toUpperCase()}</h2>
             <div className="equipment_list_parent">
             {
-                // equipList.map((equip)=>{
-                //     return (<EquipmentCard
-                //                 name={equip.name}
-                //                 price={equip.price}
-                //                 vin = {equip.vin}
-                //                 equiptype={equipType}
-                //             />); 
-                // })
+                equipList.map((equip)=>{
+                    return (<EquipmentCard
+                                name={equip.name}
+                                price={equip.price}
+                                vin = {equip.vin}
+                                equiptype={equipType}
+                            />); 
+                })
             }              
             </div>
         </div>

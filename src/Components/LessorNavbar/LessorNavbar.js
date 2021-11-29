@@ -31,7 +31,7 @@ const LessorNavbar = () =>{
                             </NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="#">
+                            <NavLink href="/myEquipment">
                                 MY EQUIPMENT
                             </NavLink>
                         </NavItem>

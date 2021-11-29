@@ -15,6 +15,7 @@ import EditProfileF from './Components/UserProfile_Farmer/EditProfileF';
 import EditProfileL from './Components/UserProfile_Lessor/EditProfileL';
 import Footer from './Components/Footer/Footer';
 import LessorDashboard from './Components/LessorDashboard/LessorDashboard';
+import MyEquipment from './Components/MyEquipment/MyEquipment';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="editProfileF" element={<EditProfileF />} /> 
           <Route path="editProfileL" element={<EditProfileL />} /> 
           <Route path="lessorDashboard" element={<LessorDashboard />}/>
+          <Route path="myEquipment" element={<MyEquipment />} />
         </Routes>
         <Footer />
     </div>
