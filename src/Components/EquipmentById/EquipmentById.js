@@ -10,16 +10,33 @@ import Loading from './../Loading';
 
 const EquipmentById = () => {
     let button=(<></>);
-    if(localStorage.getItem('rt')==='Farmer'){
-        button=(<input type="submit" value="Request for Booking" className="btn btn-primary"  />);
-                    
-                }
-    const call=()=>{
+    
+    let {vin} = useParams();
+    const call=async()=>{
+        const details={email:localStorage.getItem('email'), vin:vin}
+        try{
+            const res=await axios.post(
+                `http://localhost:5000/showdetails/book`,details
+                );
+            setEquipDetails(res.data);  
+            console.log(equipDetails);
+            console.log(res.data);
+
+
+        }
+        catch(err){
+            console.log(err);
+        }
+        finally{
+            setLoading(false);
+        }
+    
         //book button
+
     }
 
 
-let {vin} = useParams();
+
     const [equipDetails, setEquipDetails] = useState({}); //equipList is array of objects
     const [loading,setLoading] = useState(true);
     //cdm-post-lh:5000/showdetails/,equiptype -res.price, name, vin
@@ -27,7 +44,7 @@ let {vin} = useParams();
     const getEquipDetails = async ()=>{
         try{
             const res=await axios.get(
-                `http://localhost:5000/showdetails/details/:${vin}`
+                `http://localhost:5000/showdetails/details/${vin}`
                 );
             setEquipDetails(res.data);  
             console.log(equipDetails);
@@ -49,6 +66,10 @@ let {vin} = useParams();
     if(loading){
         return <Loading />
     }
+    if(localStorage.getItem('rt')==='Farmer'){
+        button=(<input type="submit" value="Request for Booking" className="btn btn-primary" onClick={call}  />);
+                    
+                }
 
     return (
         <>
@@ -59,11 +80,11 @@ let {vin} = useParams();
                 <div className="center_equipment_desc">
                 <div >
                     Name:{equipDetails.name}<br/>  
-                    Brand:{equipDetails.name}<br/>  
-                    Rent:{equipDetails.name}<br/>  
-                    Purchase Date:{equipDetails.name}<br/>  
-                    Owner Name:{equipDetails.name}<br/>  
-                VIN No.:{equipDetails.name}<br/>  
+                    Brand:{equipDetails.brand}<br/>  
+                    Rent:{equipDetails.price}<br/>  
+                    Purchase Date:{equipDetails.purchasedate}<br/>  
+                    Owner Name:{equipDetails.subcat}<br/>  
+                VIN No.:{equipDetails.vin}<br/>  
                 </div>
                 {button}
                 </div>

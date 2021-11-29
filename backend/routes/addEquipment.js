@@ -1,6 +1,6 @@
 const router = require('express').Router();
 let Equipment = require('../models/equipment.models.js');
-
+let Booking= require('../models/booking.model');
 router.route('/add').post((req, res) => {
   const newEquipment = new Equipment({
     name: req.body.name,
@@ -20,6 +20,15 @@ router.route('/add').post((req, res) => {
   newEquipment.save()
     .then(() => console.log('Equipment added!'))
     .catch(err => console.log(err));
+  const newBook= new Booking({
+            vin:req.body.vin,
+            book:'',
+            bookreq:[]
+          });
+          newBook.save()
+          .then(()=>res.json(req.body.email))
+          .catch(err=>console.log(err)); 
+  
 });
 
 

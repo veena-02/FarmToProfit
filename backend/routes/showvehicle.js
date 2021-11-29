@@ -4,7 +4,7 @@ const router = require("express").Router();
 const FarmerRegistration = require("../models/farmersSignup.models");
 // const { countDocuments } = require('../models/farmersSignup.models');
 let Vehicle = require("../models/equipment.models");
-
+const Booking =require("../models/booking.model");
 router.route("/").get((req, res) => {
   //cat and sub category to search for
 
@@ -29,6 +29,7 @@ router.route("/details/:vin").get((req, res) => {
     if (err) {
       console.log(err);
     } else {
+      console.log(doc);
       res.json(doc);
     }
   });
@@ -36,25 +37,39 @@ router.route("/details/:vin").get((req, res) => {
 
 router.route("/book").post((req, res) => {
   //send vin of bbooking vehicle req, and email of farmer who made it
-
-  Vehicle.findOneAndUpdate(
-    { vin: req.body.vin },
-    { book: req.body.email },
-    function (err, doc) {
-      if (err) {
-        console.log(err);
-      } else {
-        res.send(200);
-        console.log(doc);
-      }
+  console.log(req.body.email);
+  Vehicle.findOne({ vin: req.body.vin },function(err,doc){
+    if (err){
+      console.log(err);
     }
-  );
+    else{
+      Booking.findOne({vin:req.body.vin},function(err,doc){
+        if (err){
+          console.log(err);
+          
+        }
+        else{
+            if (doc.book==='' || doc.book===null){
+              Booking.update({vin:req.body.vin},{$addToSet:{bookreq:req.body.email}},{new:true},function(error,docs){
+                  if(error){
+                    console.log(error);
+                  }
+                  else{
+                    console.log(docs);
+                  }
+              });
+            }
+          }
+        });
+      }
+      });
+      
 });
 
 router.route("/bookingrequest").post((req, res) => {
   Vehicle.find({ email: req.body.email }, function (err, doc) {
     if (err) {
-      console.log.bind(err);
+      console.log(err);
     } else {
       res.json(doc);
       // doc.forEach((element) => {

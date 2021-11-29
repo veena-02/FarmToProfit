@@ -12,7 +12,9 @@ const equipmentSchema = new Schema({
     description: {type:Array,required:true},
     images:{type:String, required:false},
     bill:{type:String, required:false},
-    email:{type:String, required:true}
+    email:{type:String, required:true},
+    bookreq:{type:Array,required:false},
+    book:{type:String,required:false}
 },{
     timestamps: true
 });
