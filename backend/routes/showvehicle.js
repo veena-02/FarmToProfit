@@ -3,7 +3,7 @@
 const router = require("express").Router();
 const FarmerRegistration = require("../models/farmersSignup.models");
 // const { countDocuments } = require('../models/farmersSignup.models');
-let Vehicle = require("../models/farmersSignup.models");
+let Vehicle = require("../models/equipment.models");
 
 router.route("/").post((req, res) => {
   //cat and sub category to search for
@@ -11,7 +11,7 @@ router.route("/").post((req, res) => {
   // console.log(req.body.mail);
 
   Vehicle.find(
-    { cat: req.body.cat, subcat: req.body.subcat },
+    { subcat: req.body.subcat },
     function (err, docs) {
       if (err) {
         console.log(err);

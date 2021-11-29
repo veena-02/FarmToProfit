@@ -1,86 +1,55 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
+import axios from 'axios';
 import {useParams} from 'react-router-dom';
 import './SameTypeEquip.css';
 import ToolsNavbar from '../toolsNavbar/ToolsNavbar.js'
-import img1 from './../../Assets/images/equipment/mt1.png'
-import img2 from './../../Assets/images/equipment/mt2.png'
-import img3 from './../../Assets/images/equipment/mt3.png'
-import img4 from './../../Assets/images/equipment/mt4.png'
-import { NavLink } from 'react-router-dom';
+import EquipmentCard from './../EquipmentCard/EquipmentCard';
 
 const SameTypeEquip=({match})=>{
     
     let {equipType} = useParams();
+    const [equipList, setEquipList] = useState([]); //equipList is array of objects
+    const [loading,setLoading] = useState(true);
     //cdm-post-lh:5000/showdetails/,equiptype -res.price, name, vin
-    //fun- iterate- doc
+    
+    const getEquipList = async ()=>{
+        try{
+            const res=await axios.get(
+                `localhost:5000/showdetails/`,{
+                    params: {
+                      subcat: equipType.split("$").join(" ")
+                    }
+                  }
+                );
+            setEquipList(res);    
+        }
+        catch(err){
+            console.log(err);
+        }
+        finally{
+            setLoading(false);
+        }
+    }
+    useEffect(()=>{
+        getEquipList();
+    },[])
+
     return(
         <>
         <ToolsNavbar />
         <div>
             <h2 className="equipment_type_heading">{equipType.split("$").join(" ").toUpperCase()}</h2>
             <div className="equipment_list_parent">
-                {map}
-                <div className="equipment_card">
-                    <div>
-                    <button className="add_icon">+</button>
-                    </div>
-                    <div className="equipment_card_img">
-                        <img src={img1} height="200px" width="300px"/>
-                    </div>
-                    <div className="brand_model"> 
-                        Product Name: {}<br/>
-                        Daily Rent : 1 eth<br/>
-                        <NavLink to={`/equipmentList/:${equipType}/${vin}`}>Show Details</NavLink>
-                        
-                    </div>
-                    <div className="equipment_details"></div>
-                </div>
-                <div className="equipment_card">
-                    <div>
-                    <button className="add_icon">+</button>
-                    </div>
-                    <div className="equipment_card_img">
-                    <img src={img2} height="200px" width="300px"/>
-                    </div>
-                    <div className="brand_model"> 
-                        Product Name:  Force Motors Abhiman<br/>
-                        Daily Rent : 1 eth<br/>
-                        <button>Show Details</button>
-                        
-                    </div>
-                    <div className="equipment_details"></div>
-                </div>
-                <div className="equipment_card">
-                    <div>
-                    <button className="add_icon">+</button>
-                    </div>
-                    <div className="equipment_card_img">
-                    <img src={img3} height="200px" width="300px"/>
-                    </div>
-                    <div className="brand_model"> 
-                        Product Name:  Captain 200 DI<br/>
-                        Daily Rent : 1 eth<br/>
-                        <button>Show Details</button>
-                        
-                    </div>
-                    <div className="equipment_details"></div>
-                </div>
-                
-                <div className="equipment_card">
-                    <div>
-                    <button className="add_icon">+</button>
-                    </div>
-                    <div className="equipment_card_img">
-                    <img src={img4} height="200px" width="300px"/>
-                    </div>
-                    <div className="brand_model"> 
-                        Product Name:  Massey Ferguson 6028<br/>
-                        Daily Rent : 1 eth<br/>
-                        <button>Show Details</button>
-                        
-                    </div>
-                    <div className="equipment_details"></div>
-                </div>
+            {
+                equipList.map((equip,index)=>{
+                    return (<EquipmentCard
+                                name={equip.name}
+                                price={equip.price}
+                                vin = {equip.vin}
+                                equiptype={equipType}
+                            />); 
+                })
+            }              
             </div>
         </div>
         </>

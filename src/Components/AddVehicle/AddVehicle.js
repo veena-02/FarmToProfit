@@ -23,10 +23,10 @@ export default class AddVehicle extends Component{
             purchaseDate: "",
             purchasePrice: "",
             cat: "Tractor",
-            subcat:"MiniTractor",
+            subcat:"mini tractor",
             vinNo: "",
             description: [""],
-            subcatarr: ["Mini Tractor","wd4 tractor", "Ac cabin tractor"],
+            subcatarr: ["mini tractor","wd4 tractor", "ac cabin tractor"],
         }
 
     }

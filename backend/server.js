@@ -51,6 +51,7 @@ const lessorRegistrationRouter = require("./routes/lessorRegistration");
 const editProfile = require("./routes/editProfile");
 let FarmerRegistration = require("./models/farmersSignup.models");
 const addEquipment = require("./routes/addEquipment");
+const showdetails = require("./routes/showvehicle.js");
 
 app.use("/login", loginRouter);
 //app.use('/contactUs', contactUsRouter);
@@ -58,6 +59,7 @@ app.use("/farmerRegistration", farmerRegistrationRouter);
 app.use("/lessorRegistration", lessorRegistrationRouter);
 app.use("/editProfile", editProfile);
 app.use("/addvehicle",addEquipment);
+app.use("/showdetails",showdetails);
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
