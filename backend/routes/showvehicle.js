@@ -5,18 +5,17 @@ const FarmerRegistration = require("../models/farmersSignup.models");
 // const { countDocuments } = require('../models/farmersSignup.models');
 let Vehicle = require("../models/equipment.models");
 
-router.route("/").post((req, res) => {
+router.route("/").get((req, res) => {
   //cat and sub category to search for
 
   // console.log(req.body.mail);
 
   Vehicle.find(
-    { subcat: req.body.subcat },
     function (err, docs) {
       if (err) {
         console.log(err);
       } else {
-        // console.log(doc);
+        console.log(docs);
         res.json(docs);
       }
     }

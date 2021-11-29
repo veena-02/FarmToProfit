@@ -15,13 +15,13 @@ const SameTypeEquip=({match})=>{
     const getEquipList = async ()=>{
         try{
             const res=await axios.get(
-                `localhost:5000/showdetails/`,{
-                    params: {
-                      subcat: equipType.split("$").join(" ")
-                    }
-                  }
+                `http://localhost:5000/showdetails/`
                 );
-            setEquipList(res);    
+            setEquipList(res.data);  
+            console.log(equipList);
+            console.log(res.data);
+
+
         }
         catch(err){
             console.log(err);
@@ -41,14 +41,14 @@ const SameTypeEquip=({match})=>{
             <h2 className="equipment_type_heading">{equipType.split("$").join(" ").toUpperCase()}</h2>
             <div className="equipment_list_parent">
             {
-                equipList.map((equip,index)=>{
-                    return (<EquipmentCard
-                                name={equip.name}
-                                price={equip.price}
-                                vin = {equip.vin}
-                                equiptype={equipType}
-                            />); 
-                })
+                // equipList.map((equip)=>{
+                //     return (<EquipmentCard
+                //                 name={equip.name}
+                //                 price={equip.price}
+                //                 vin = {equip.vin}
+                //                 equiptype={equipType}
+                //             />); 
+                // })
             }              
             </div>
         </div>
