@@ -11,13 +11,15 @@ import { NavLink } from 'react-router-dom';
 const SameTypeEquip=({match})=>{
     
     let {equipType} = useParams();
+    //cdm-post-lh:5000/showdetails/,equiptype -res.price, name, vin
+    //fun- iterate- doc
     return(
         <>
         <ToolsNavbar />
         <div>
             <h2 className="equipment_type_heading">{equipType.split("$").join(" ").toUpperCase()}</h2>
             <div className="equipment_list_parent">
-                
+                {map}
                 <div className="equipment_card">
                     <div>
                     <button className="add_icon">+</button>
@@ -26,9 +28,9 @@ const SameTypeEquip=({match})=>{
                         <img src={img1} height="200px" width="300px"/>
                     </div>
                     <div className="brand_model"> 
-                        Product Name: Swaraj 717<br/>
+                        Product Name: {}<br/>
                         Daily Rent : 1 eth<br/>
-                        <NavLink to={`/equipmentList/:${equipType}/swaraj`}>Show Details</NavLink>
+                        <NavLink to={`/equipmentList/:${equipType}/${vin}`}>Show Details</NavLink>
                         
                     </div>
                     <div className="equipment_details"></div>

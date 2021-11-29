@@ -20,10 +20,10 @@ router.route("/login").post((req, res) => {
           } else {
             //console.log('true');
             
-            req.session.rt = req.body.registrationType;
+            // req.session.rt = req.body.registrationType;
             // localStorage.setItem("rt", req.body.registrationType);
-            req.session.userID = doc.email;
-            req.session.city=doc.city;
+            // req.session.userID = doc.email;
+            // req.session.city=doc.city;
             res.json(doc.email);
             
             // req.session.save((err) => {
@@ -52,10 +52,10 @@ router.route("/login").post((req, res) => {
             console.log(err);
             res.sendStatus(400);
           } else {
-            req.session.email = doc.email;
-            req.session.city=doc.city;
+            // req.session.email = doc.email;
+            // req.session.city=doc.city;
             // res.locals.email=doc.email;
-            res.sendStatus(200);
+            res.json(doc.email);
           }
         });
       }

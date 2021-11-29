@@ -5,9 +5,9 @@ router.route('/add').post((req, res) => {
   const newEquipment = new Equipment({
     name: req.body.name,
     brand: req.body.brand,
-    purchasedate: req.body.purchaseDate,
-    price: req.body.purchasePrice,
-    vin: req.body.vinNo,
+    purchasedate: req.body.purchasedate,
+    price: req.body.price,
+    vin: req.body.vin,
     cat: req.body.cat,
     subcat:req.body.subcat,
     description: req.body.description,

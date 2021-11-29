@@ -135,9 +135,11 @@ export default class FarmerRegistration extends Component {
     console.log(farmer);
     if (this.state.password===this.state.confirmPassword){
     axios.post('http://localhost:5000/farmerRegistration/register', farmer)
-      .then(res => console.log(res.data));
+      .then(res => {console.log(res.data);
 
-    window.location = '/';
+    window.location = '/login';
+      });
+    
     }
     else{
       this.setState({msg:(<span className="small text-danger">Password does not Matches!</span>)})
@@ -149,7 +151,7 @@ export default class FarmerRegistration extends Component {
     return (
         <>
         <MyNavbar />
-        <div className="register_background" style={{marginBottom: "450px"}}>
+        <div className="register_background" style={{marginBottom: "700px"}}>
             
             <Form className="register_us" onSubmit={this.onSubmit}>
             <h3 className="text-center">FARMER REGISTRATION</h3>

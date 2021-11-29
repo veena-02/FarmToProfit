@@ -92,7 +92,7 @@ export default class LessorRegistration extends Component {
     })
   } onChangeEmail (e) {
     this.setState({
-      aadhar: e.target.value
+      email: e.target.value
     })
   }
   onChangeHaveAccount(e) {
@@ -135,10 +135,15 @@ export default class LessorRegistration extends Component {
     console.log(lessor);
     if (this.state.password===this.state.confirmPassword){
     axios.post('http://localhost:5000/lessorRegistration/register', lessor)
-      .then(res => console.log(res.data));
+      .then(res => {console.log(res.data);
+        
 
-    window.location = '/';
-    }
+    window.location = '/login';
+    });
+  }
+  else{
+    this.setState({msg:(<span className="small text-danger">Password does not Matches!</span>)})
+  }
   }
 
   render() {
@@ -286,7 +291,7 @@ export default class LessorRegistration extends Component {
                 id="confirmPassword"
                 name="confirmPassword"
                 placeholder=""
-                type="confirmPassword"
+                type="password"
                 // value={this.state.confirmPassword}
                 onChange={this.onChangeConfirmPassword}
             />

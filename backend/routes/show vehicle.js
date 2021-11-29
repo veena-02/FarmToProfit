@@ -23,12 +23,6 @@ router.route("/").post((req, res) => {
   );
 });
 
-
-
-
-
-
-
 router.route("/details").post((req, res) => {
   // vin of vehicle to see dwtail for
   console.log(req.body.email, "err");

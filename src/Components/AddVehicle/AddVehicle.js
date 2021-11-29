@@ -3,7 +3,7 @@ import LessorNavbar from './../LessorNavbar/LessorNavbar';
 import { Form,FormGroup,Input, Label, Col, FormText } from 'reactstrap';
 import axios from 'axios';
 
-class AddVehicle extends Component{
+export default class AddVehicle extends Component{
     constructor(props){
         super(props);
 
@@ -15,16 +15,18 @@ class AddVehicle extends Component{
         this.onChangeCat = this.onChangeCat.bind(this);
         this.onChangeVin = this.onChangeVin.bind(this);
         this.onChangeDescription = this.onChangeDescription.bind(this);
+        this.onSubmit=this.onSubmit.bind(this);
+
         this.state = {
             name: "",
             brand: "",
             purchaseDate: "",
             purchasePrice: "",
             cat: "Tractor",
-            subcat:[],
+            subcat:"MiniTractor",
             vinNo: "",
-            // description: [""],
-            // subtypeCat: ["Mini Tractor","wd4 "],
+            description: [""],
+            subcatarr: ["Mini Tractor","wd4 tractor", "Ac cabin tractor"],
         }
 
     }
@@ -59,41 +61,53 @@ class AddVehicle extends Component{
     }) 
     }
     onChangeSubcat(e){
-        this.setState({subcat:e.target.value})
-        if (this.state.cat==='Tractor'){
-            this.setState({subcat:["mini tractor","wd4 tractor","ac cabin tractor"]})
-        }
-        else if(this.state.cat==='Implements'){
-            this.setState({subcat:["rotary tiller","cultivator", "plough", "harrow", "trailer","sprayer"]})
-        }
-        else if(this.state.cat==='Harvest'){
-            this.setState({subcat:["self propelled", "tractor mounted"]})
-        }
-        else if(this.state.cat==='Tools'){
-            this.setState({subcat:["tarpaulin","brush cutter","power weeder","power tiller","power reaper","earth auger","mowers and trimmers","accessories"]})
-        }
+        // console.log(e.target.value);
+        this.setState({subcat:e.target.value});
+        // console.log(this.state.selectedsubcat);
+        
     }
     onChangeCat(e){
+    //    console.log(e.target.value); 
        this.setState({
       cat: e.target.value
-    }) 
+    });
+    // console.log(this.state.cat, this.state.subcat);
+    if (e.target.value==='Tractor'){
+        this.setState({subcatarr:["mini tractor","wd4 tractor","ac cabin tractor"]});
+    }
+    else if(e.target.value==='Implements'){
+        // console.log("p");
+        this.setState({subcatarr:["rotary tiller","cultivator", "plough", "harrow", "trailer","sprayer"]})
+        // console.log(this.state.subcat);
+    }
+    else if(e.target.value==='Harvestor'){
+        this.setState({subcatarr:["self propelled", "tractor mounted"]});
+    }
+    else if(e.target.value==='Tools'){
+        this.setState({subcatarr:["tarpaulin","brush cutter","power weeder","power tiller","power reaper","earth auger","mowers and trimmers","accessories"]});
+    }
+    // console.log(this.state.subcat,"00");
+    
     }
 
     onSubmit(e){
         e.preventDefault();
+
         const equipment = {
             name: this.state.name,
             brand: this.state.brand,
-            purchaseDate: this.state.purchaseDate,
-            purchasePrice: this.state.purchasePrice,
+            purchasedate: this.state.purchaseDate,
+            price: this.state.purchasePrice,
             cat: this.state.cat,
             subcat:this.state.subcat,
-            vinNo: this.state.vinNo,
-            //description: this.state.description
+            vin: this.state.vinNo,
+            description: this.state.description,
+            email:localStorage.getItem('email')
         }
+        console.log(equipment);
         axios.post('http://localhost:5000/addvehicle/add', equipment)
-      .then(res => console.log(res.data));
-      window.location = "/equipmentList";
+      .then(res =>{ console.log(res.data);
+      window.location = "/equipmentList";});
     }
 
     render(){
@@ -137,7 +151,7 @@ class AddVehicle extends Component{
                         id="purchaseDate"
                         name="purchaseDate"
                         placeholder="Purchase Date"
-                        type="string"
+                        type="date"
                         onChange={this.onChangePurchaseDate}
                     />
                 </FormGroup>
@@ -166,7 +180,7 @@ class AddVehicle extends Component{
     
                     />
                 </FormGroup>
-                {/* <FormGroup>
+                <FormGroup>
                     <Label for="description">
                     Description Tags
                     </Label>
@@ -178,7 +192,7 @@ class AddVehicle extends Component{
                         onChange={this.onChangeDescription}
     
                     />
-                </FormGroup> */}
+                </FormGroup>
                 <FormGroup>
                 <Label for="equipmentType">Category</Label>
                 <Input
@@ -199,12 +213,14 @@ class AddVehicle extends Component{
                     id="equipmentType"
                     name="subcat"
                     type="select"
-                    onChange={this.onChangeSubcat}>
+                onChange={this.onChangeSubcat}
+                    >
                         {
-                            this.state.subcat.map(function(subcat) {
+                            this.state.subcatarr.map(function(subcat1) {
                             return <option 
-                              key={subcat}
-                              value={subcat}>{subcat}
+                              key={subcat1}
+                              value={subcat1} >
+                                  {subcat1}
                               </option>;
                             
                           })
@@ -249,7 +265,7 @@ class AddVehicle extends Component{
             </Form>
             </div>
         </>
-    );
+    )
 }
 }
-export default AddVehicle;
+

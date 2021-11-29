@@ -32,7 +32,7 @@ router.route('/register').post((req, res) => {
       aadhar:req.body.aadhar,
       email:req.body.email,
       account:req.body.haveAccount,
-      password:req.body.hash
+      password:hash
     });
   
   console.log(newFarmer+'00')
