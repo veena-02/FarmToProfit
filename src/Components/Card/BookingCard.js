@@ -3,7 +3,7 @@ import './../EquipmentOfSameType/SameTypeEquip.css';
 import img1 from './../../Assets/images/equipment/mt1.png';
 import { NavLink } from 'react-router-dom';
 
-const EquipmentCard=(props)=>{
+const BookingCard=(props)=>{
     return (
         <>
             <div className="equipment_card">
@@ -16,11 +16,13 @@ const EquipmentCard=(props)=>{
                     <div className="brand_model"> 
                         Product Name: {props.name}<br/>
                         Daily Rent : {props.price}<br/>
-                        <NavLink to={`/equipmentList/:${props.equipType}/${props.vin}`}>Show Details</NavLink>
+                        {/* Requests:{props.request}<br/> */}
+                        <NavLink to={`/myEquipment/:${props.equipType}/:${props.vin}`}>Show Details</NavLink>
+
                     </div>
                     <div className="equipment_details"></div>
                 </div>
         </>
     )
 }
-export default EquipmentCard;
+export default BookingCard;

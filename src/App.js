@@ -30,11 +30,12 @@ function App() {
           <Route path="contactUs" element={<ContactUs />} />
           <Route path="addvehicle" element={<AddVehicle />} />
           <Route path="equipmentList/:equipType" element={<SameTypeEquip />} />
-          <Route path="equipmentList/:equipType/:equip" element={<EquipmentById />} />
+          <Route path="equipmentList/:equipType/:vin" element={<EquipmentById />} />
           <Route path="editProfileF" element={<EditProfileF />} /> 
           <Route path="editProfileL" element={<EditProfileL />} /> 
           <Route path="lessorDashboard" element={<LessorDashboard />}/>
           <Route path="myEquipment" element={<MyEquipment />} />
+          <Route path="myEquipment" element={<MyEquipment/>}/>
         </Routes>
         <Footer />
     </div>

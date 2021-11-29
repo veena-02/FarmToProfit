@@ -22,10 +22,10 @@ router.route("/").get((req, res) => {
   );
 });
 
-router.route("/details").post((req, res) => {
+router.route("/details/:vin").get((req, res) => {
   // vin of vehicle to see dwtail for
-  console.log(req.body.email, "err");
-  Vehicle.findOne({ vin: req.body.vin }, function (err, doc) {
+  console.log(req.params.vin);
+  Vehicle.findOne({ vin: req.params.vin }, function (err, doc) {
     if (err) {
       console.log(err);
     } else {
@@ -56,29 +56,30 @@ router.route("/bookingrequest").post((req, res) => {
     if (err) {
       console.log.bind(err);
     } else {
-      doc.forEach((element) => {
-        if (element.book !== "" || element.book !== null) {
-          FarmerRegistration.findOne(
-            { email: element.book },
-            function (error, result) {
-              if (error) {
-                console.log(error);
-              } else {
-                res.json({
-                  fullname: result.fullname,
-                  pnumber: result.Pnumber,
-                  streetnumber: result.streetnumber,
-                  streetname: result.streetname,
-                  city: result.city,
-                  pincode: result.pincode,
-                  email: result.email,
-                  vin: element.vin,
-                });
-              }
-            }
-          );
-        }
-      });
+      res.json(doc);
+      // doc.forEach((element) => {
+      //   if (element.book !== "" || element.book !== null) {
+      //     FarmerRegistration.findOne(
+      //       { email: element.book },
+      //       function (error, result) {
+      //         if (error) {
+      //           console.log(error);
+      //         } else {
+      //           res.json({
+      //             fullname: result.fullname,
+      //             pnumber: result.Pnumber,
+      //             streetnumber: result.streetnumber,
+      //             streetname: result.streetname,
+      //             city: result.city,
+      //             pincode: result.pincode,
+      //             email: result.email,
+      //             vin: element.vin,
+      //           });
+      //         }
+      //       }
+      //     );
+      //   }
+      // });
     }
   });
 });

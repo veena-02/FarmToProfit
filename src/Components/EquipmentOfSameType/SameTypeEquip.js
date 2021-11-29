@@ -3,7 +3,7 @@ import axios from 'axios';
 import {useParams} from 'react-router-dom';
 import './SameTypeEquip.css';
 import ToolsNavbar from '../toolsNavbar/ToolsNavbar.js'
-import EquipmentCard from './../EquipmentCard/EquipmentCard';
+import EquipmentCard from './../Card/EquipmentCard';
 import Loading from './../Loading';
 
 const SameTypeEquip=({match})=>{
