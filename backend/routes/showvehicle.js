@@ -145,13 +145,15 @@ router.route("/bookingrequest/:vin").get((req, res) => {
   });
 });
 router.route("/done").post((req,res)=>{
-    const doc=Booking.findOneAndUpdate({vin:req.body.vin},{book:req.body.email,bookreq:[]},{new:true});
-    if (doc){
-      console.log(doc);
+  console.log(req.body.vin,req.body.email);
+    Booking.updateOne({vin:req.body.vin},{book:req.body.email,bookreq:[]},function(err,doc){
+    if (err){
+      console.log(err);
     }
     else{
-      console.log("err");
+      console.log(doc);
     }
+  });
 });
 
 module.exports = router;

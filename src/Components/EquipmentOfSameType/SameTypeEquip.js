@@ -2,7 +2,8 @@ import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 import {useParams} from 'react-router-dom';
 import './SameTypeEquip.css';
-import ToolsNavbar from '../toolsNavbar/ToolsNavbar.js'
+import ToolsNavbar from '../toolsNavbar/ToolsNavbar.js';
+import LessorNavbar from '../LessorNavbar/LessorNavbar';
 import EquipmentCard from './../Card/EquipmentCard';
 import Loading from './../Loading';
 
@@ -38,10 +39,16 @@ const SameTypeEquip=({match})=>{
     if(loading){
         return <Loading />
     }
-
+    let bar=(<></>);
+        if (localStorage.getItem('rt')==='Farmer'){
+            bar=<ToolsNavbar />;
+        }
+        else{
+            bar= <LessorNavbar />;
+        }
     return(
-        <>
-        <ToolsNavbar />
+        <> 
+        {bar}
         <div>
             <h2 className="equipment_type_heading">{equipType.split("$").join(" ").toUpperCase()}</h2>
             <div className="equipment_list_parent">
