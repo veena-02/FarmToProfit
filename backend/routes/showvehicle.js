@@ -98,5 +98,60 @@ router.route("/bookingrequest").post((req, res) => {
     }
   });
 });
+router.route("/bookingrequest/:vin").get((req, res) => {
+ var farmers=[];
+ let c=0;
+  Booking.findOne({vin:req.params.vin},function(err,doc){
+    if (err){
+      console.log(err);
+    }
+    else {
+      console.log(req.params.vin, doc);
+      let len=doc.bookreq.length;
+        doc.bookreq.forEach(element =>{
+          // console.log(element);
+          FarmerRegistration.findOne({email:element},function(error,result){
+            if(error){
+              console.log(error);
+            }
+            else{
+              const f={
+                fullname: result.fullname,
+                pnumber: result.Pnumber,
+                streetnumber: result.streetnumber,
+                streetname: result.streetname,
+                city: result.city,
+                pincode: result.pincode,
+                email: result.email,
+                vin: req.params.vin,
+              };
+              c=c+1;
+              farmers.push(f);
+              // console.log(c);
+              if(c===len){
+              console.log(farmers);
+              res.json(farmers);
+              }
+            }
+            // console.log(farmers);
+          });
+          // console.log(farmers);
+        })
+        // .then(()=>{console.log(farmers);
+        //   res.json(farmers)});
+        // console.log(farmers);
+        // res.json(farmers);
+    }
+  });
+});
+router.route("/done").post((req,res)=>{
+    const doc=Booking.findOneAndUpdate({vin:req.body.vin},{book:req.body.email,bookreq:[]},{new:true});
+    if (doc){
+      console.log(doc);
+    }
+    else{
+      console.log("err");
+    }
+});
 
 module.exports = router;

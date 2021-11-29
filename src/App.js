@@ -16,7 +16,7 @@ import EditProfileL from './Components/UserProfile_Lessor/EditProfileL';
 import Footer from './Components/Footer/Footer';
 import LessorDashboard from './Components/LessorDashboard/LessorDashboard';
 import MyEquipment from './Components/MyEquipment/MyEquipment';
-
+import BookingRequest from './Components/BookingRequests/BookingRequests';
 function App() {
   return (
     <div className="App">
@@ -35,7 +35,7 @@ function App() {
           <Route path="editProfileL" element={<EditProfileL />} /> 
           <Route path="lessorDashboard" element={<LessorDashboard />}/>
           <Route path="myEquipment" element={<MyEquipment />} />
-          <Route path="myEquipment" element={<MyEquipment/>}/>
+          <Route path="myEquipment/:vin" element={<BookingRequest/>}/>
         </Routes>
         <Footer />
     </div>

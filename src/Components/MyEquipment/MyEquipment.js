@@ -7,7 +7,6 @@ import Loading from './../Loading';
 
 const MyEquipment=({match})=>{
     
-    let {equipType} = useParams();
     const [equipList, setEquipList] = useState([]); //equipList is array of objects
     const [loading,setLoading] = useState(true);
     //cdm-post-lh:5000/showdetails/,equiptype -res.price, name, vin
