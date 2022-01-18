@@ -19,8 +19,8 @@ export default class Login extends Component {
     this.loginUser = this.loginUser.bind(this);
 
     this.state = {
-      user: "ab999@srmist.edu.in",
-      password: "Ashash",
+      user: "ok@srmist.edu.in",
+      password: "ok",
       registrationType: "Farmer",
       msg: <span className="small"></span>,
     };
